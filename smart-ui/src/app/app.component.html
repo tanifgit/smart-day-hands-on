@@ -1,0 +1,35 @@
+  <mat-toolbar color="primary" class="example-header">
+    <button (click)="sidenav.toggle()" mat-icon-button class="example-icon" aria-label="Smart Health">
+    <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Smart Health</h1>
+    <span class="example-spacer"></span>
+    <span *ngIf="(auth.isAuthenticated$ | async) === false">
+    <button mat-icon-button class="example-icon" aria-label="Login" (click)="auth.loginWithRedirect()">
+        <mat-icon>login</mat-icon>
+    </button>
+    </span>
+    <span *ngIf="auth.user$ | async as user">{{user.name}}</span>
+    <span *ngIf="(auth.isAuthenticated$ | async) !== false">
+      <button mat-icon-button class="example-icon" aria-label="Logout" (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+        <mat-icon>logout</mat-icon>
+    </button>
+    </span> 
+</mat-toolbar>
+<mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+    [fixedInViewport]="true" fixedTopGap="56">
+    <mat-nav-list *ngIf="(auth.isAuthenticated$ | async) === false">
+      <a mat-list-item (click)="auth.loginWithRedirect()"><span class="item-menu"><mat-icon>login</mat-icon><label class="label-menu">Login</label></span></a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="(auth.isAuthenticated$ | async) !== false">
+      <a mat-list-item routerLink="forms/heart"><span class="item-menu"><mat-icon>favorite_border</mat-icon><label class="label-menu">Heart rate</label></span></a>
+      <a mat-list-item routerLink="forms/blood"><span class="item-menu"><mat-icon>assessment</mat-icon><label class="label-menu">Blood pressure</label></span></a>
+      <a mat-list-item routerLink="forms/weight"><span class="item-menu"><mat-icon>monitor_weight</mat-icon><label class="label-menu">Weight</label></span></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <mat-sidenav-content [style.marginTop.px]="mobileQuery.matches ? 56 : 64">        
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

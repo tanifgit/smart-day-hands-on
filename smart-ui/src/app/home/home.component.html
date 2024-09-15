@@ -1,0 +1,62 @@
+<div class="container-options" *ngIf="!isLoading">
+    <div class="div-card" *ngIf="!isSaved">
+        <mat-card class="option-card">
+             <mat-card-header>
+                 <div mat-card-avatar class="person-header-image"></div>
+                 <mat-card-title>Personal Information</mat-card-title>
+                 <mat-card-subtitle>We need your data!</mat-card-subtitle>
+             </mat-card-header>  
+             <mat-card-content>
+                 Before to use this application we need some information about you! Please, click on start and introduce your personal information.
+             </mat-card-content>      
+             <mat-card-actions class="action-card">
+                 <button mat-raised-button (click)="open('person')">START</button>
+             </mat-card-actions>
+         </mat-card>
+     </div> 
+    <div class="div-card" *ngIf="isSaved">
+       <mat-card class="option-card">
+            <mat-card-header>
+                <div mat-card-avatar class="heart-header-image"></div>
+                <mat-card-title>Heart Rate</mat-card-title>
+                <mat-card-subtitle>Save your heart rate</mat-card-subtitle>
+            </mat-card-header>  
+            <mat-card-content>
+                A normal resting heart rate for adults ranges from 60 to 100 beats per minute. You can save it each day and track your history!
+            </mat-card-content>      
+            <mat-card-actions class="action-card">
+                <button mat-raised-button (click)="open('heart')">SAVE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div> 
+    <div class="div-card" *ngIf="isSaved">    
+        <mat-card class="option-card">
+            <mat-card-header>
+                <div mat-card-avatar class="blood-header-image"></div>
+                <mat-card-title>Blood Pressure</mat-card-title>
+                <mat-card-subtitle>Save your blood pressure</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                Blood pressure readings from 121/81 mmHg to 139/89 mmHg could mean you're at risk of developing high blood pressure.
+            </mat-card-content>      
+            <mat-card-actions class="action-card">
+                <button mat-raised-button (click)="open('blood')">SAVE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="div-card" *ngIf="isSaved">
+        <mat-card class="option-card">
+            <mat-card-header>
+                <div mat-card-avatar class="weight-header-image"></div>
+                <mat-card-title>Weight</mat-card-title>
+                <mat-card-subtitle>Save your weight</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                Keep your weight under control. Obesity is a common, serious, and costly chronic disease of adults and children.
+            </mat-card-content>
+            <mat-card-actions class="action-card">
+                <button mat-raised-button (click)="open('weight')">SAVE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

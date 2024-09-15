@@ -1,0 +1,43 @@
+.option-card {
+    width: 80vw;
+    display: flex;
+}
+
+.action-card {
+    justify-content: center;
+}
+
+.heart-header-image {
+    background-image: url('/assets/heartrate.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.blood-header-image {
+    background-image: url('/assets/bloodpressure.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.weight-header-image {
+    background-image: url('/assets/weight.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.person-header-image {
+    background-image: url('/assets/person.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.container-options {
+    display: grid;
+}
+
+.div-card {
+    width: 100vw;
+    display: flex;
+    margin-top: 12px;
+    justify-content: center;
+}

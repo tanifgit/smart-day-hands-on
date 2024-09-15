@@ -1,0 +1,8 @@
+{
+    "/oauth2/*": {
+      "target": "https://fhirauth.rtcpjxotnwvu.sandbox-eng-paas.isccloud.io",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }

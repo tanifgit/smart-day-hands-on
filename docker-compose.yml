@@ -1,0 +1,13 @@
+version: "3.1"
+services:  
+        
+#angular
+  angular:
+    init: true
+    container_name: smart-ui
+    build:
+      context: .
+      dockerfile: smart-ui/Dockerfile
+    ports:
+      - 80:80
+      - 443:443

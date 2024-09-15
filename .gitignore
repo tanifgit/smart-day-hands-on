@@ -1,0 +1,47 @@
+
+settings.json
+# Compiled output
+smart-ui/dist
+smart-ui/tmp
+smart-ui/out-tsc
+smart-ui/bazel-out
+
+# Node
+smart-ui/node_modules
+smart-uinpm-debug.log
+smart-uiyarn-error.log
+
+# IDEs and editors
+smart-ui/.idea/
+smart-ui/.project
+smart-ui/.classpath
+smart-ui/.c9/
+smart-ui/*.launch
+smart-ui/.settings/
+smart-ui/*.sublime-workspace
+
+# Visual Studio Code
+smart-ui/.vscode/*
+smart-ui/!.vscode/settings.json
+smart-ui/!.vscode/tasks.json
+smart-ui/!.vscode/launch.json
+smart-ui/!.vscode/extensions.json
+smart-ui/.history/*
+
+# Miscellaneous
+smart-ui/.angular/cache
+smart-ui/.sass-cache/
+smart-ui/connect.lock
+smart-ui/coverage
+smart-ui/libpeerconnection.log
+smart-ui/testem.log
+smart-ui/typings
+
+# System files
+smart-ui/.DS_Store
+smart-ui/Thumbs.db
+
+## Configuration
+smart-ui/src/app/app.module_functional.ts
+
+

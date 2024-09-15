@@ -1,0 +1,135 @@
+
+<div class="container-options" *ngIf="!isLoading">
+    <div *ngIf="type === 'person'" class="div-card">
+        <form (ngSubmit)="onSubmitPerson()" [formGroup]="personForm">
+            <mat-card class="option-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="person-header-image"></div>
+                    <mat-card-title>Personal information</mat-card-title>
+                    <mat-card-subtitle>Save your data</mat-card-subtitle>
+                </mat-card-header>  
+                <mat-card-content>                    
+                    <mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="Name">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Lastname</mat-label>
+                        <input matInput formControlName="Lastname">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="Gender">
+                            <mat-option value="female">Female</mat-option>
+                            <mat-option value="male">Male</mat-option>
+                        </mat-select>
+                    </mat-form-field>                    
+                    <mat-form-field>
+                        <mat-label>Birth Date</mat-label>
+                        <input matInput [matDatepicker]="birthDate" formControlName="BirthDate">
+                        <mat-hint>MM-DD-YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="birthDate"></mat-datepicker-toggle>
+                        <mat-datepicker #birthDate></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Identifier</mat-label>
+                        <input matInput formControlName="Identifier">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input matInput formControlName="Phone">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="Email">
+                    </mat-form-field>
+                </mat-card-content>      
+                <mat-card-actions class="action-card">
+                    <button mat-raised-button type="submit">SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <div *ngIf="type === 'heart'" class="div-card">
+        <form (ngSubmit)="onSubmitHeart()" [formGroup]="heartRateForm">
+            <mat-card class="option-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="heart-header-image"></div>
+                    <mat-card-title>Heart Rate</mat-card-title>
+                    <mat-card-subtitle>Save your heart rate</mat-card-subtitle>
+                </mat-card-header>  
+                <mat-card-content>                    
+                    <mat-form-field>
+                        <mat-label>Heart Rate</mat-label>
+                        <input matInput formControlName="HeartRate">
+                    </mat-form-field>                    
+                </mat-card-content>      
+                <mat-card-actions class="action-card">
+                    <button mat-raised-button type="submit">SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <div *ngIf="type === 'blood'" class="div-card">
+        <form (ngSubmit)="onSubmitBlood()" [formGroup]="bloodForm">
+            <mat-card class="option-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="blood-header-image"></div>
+                    <mat-card-title>Blood Pressure</mat-card-title>
+                    <mat-card-subtitle>Save your blood pressure</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field>
+                        <mat-label>Systolic</mat-label>
+                        <input matInput formControlName="Systolic">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Dyastolic</mat-label>
+                        <input matInput formControlName="Dyastolic">
+                    </mat-form-field>
+                </mat-card-content>      
+                <mat-card-actions class="action-card">
+                    <button mat-raised-button>SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <div *ngIf="type === 'weight'" class="div-card">
+        <form (ngSubmit)="onSubmitWeight()" [formGroup]="weightForm">
+            <mat-card class="option-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="weight-header-image"></div>
+                    <mat-card-title>Weight</mat-card-title>
+                    <mat-card-subtitle>Save your weight</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-form-field>
+                        <mat-label>Kg</mat-label>
+                        <input matInput formControlName="Weight">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions class="action-card">
+                    <button mat-raised-button>SAVE</button>
+                    <button mat-raised-button type="button" (click)="cancel()">CANCEL</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+    <div class="div-card">
+        <mat-card class="option-card">
+            <mat-card-header>
+                <div mat-card-avatar class="chart-header-image"></div>
+                <mat-card-title>Heart Rate Chart</mat-card-title>
+                <mat-card-subtitle>Evolution</mat-card-subtitle>
+            </mat-card-header>  
+            <mat-card-content>                    
+                <canvasjs-chart [options]="chartOptions"></canvasjs-chart>    
+            </mat-card-content>      
+            <mat-card-actions class="action-card">
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
