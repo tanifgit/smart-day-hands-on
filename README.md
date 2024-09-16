@@ -1,5 +1,10 @@
 # SMART On FHIR Workshop
-This project is an example of configuration and use of InterSystems FHIR Service and capabilities to build a SMART on FHIR application.
+This project is an example of configuration and use of InterSystems FHIR Server and capabilities to build a SMART on FHIR application.
+
+The project is made out of three parts - 
+* An application (built with Angular)
+* An OAuth Server (auth0 by Okta)
+* A FHIR Server (InterSystems Cloud FHIR Server)
 
 What will you find in this project?
 
@@ -8,7 +13,7 @@ Angular application to use as a front-end, configured to login using an Auth0 ac
 
 # What do you need to make it run?
 
-Before running the containers:
+Before running the container:
 
 ## Auth0 account:
 SMART On FHIR requires OAUTH2 as a protocol for authorization, for this example we are going to use Auth0 as external Oauth2 server. To use it you should create an account from [here] (https://auth0.com/). Your Auth0 user will be the user to access to the web application.

@@ -1,6 +1,6 @@
 {
-    "/oauth2/*": {
-      "target": "https://fhirauth.rtcpjxotnwvu.sandbox-eng-paas.isccloud.io",
+   "/oauth2/*": {
+      "target": "https://fhirauth.hkng16n4t0pp.workload-prod-fhiraas.isccloud.io/oauth2",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
