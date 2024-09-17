@@ -34,32 +34,60 @@ Under the Additioanl Options - Encrypt Database is set, and you do not need to c
 Under Cloud Options you can see the Cloud Provider is already AWS, and for the region you can leave the default USE East Ohio (us-east-2).
 (If you want you can browse down the drop-down list and see we also have Israel Tel-Aviv as an optional region)
 
-![FHIR Server Deployment - size](/images/fhir-server-create-deployment2-cloud-options.png)
+![FHIR Server Deployment - cloud provider](/images/fhir-server-create-deployment2-cloud-options.png)
 
 ### Deployment Name:
 Enter in a name for your deployment (you can leave the default, some combination of your user name and date, or set some other meaningful name for you)
 
-![FHIR Server Deployment - size](/images/fhir-server-create-deployment3-deployment-name.png)
+![FHIR Server Deployment - name](/images/fhir-server-create-deployment3-deployment-name.png)
 
 ### Review:
 Review the various details and press Create
 
-![FHIR Server Deployment - size](/images/fhir-server-create-deployment4-review.png)
+![FHIR Server Deployment - review](/images/fhir-server-create-deployment4-review.png)
 
 As mentioned this will take several minutes (typicaly could be 15 minutes or even a little more)
 You will see your deployment in the list of deployments, with a status of CREATING
 
 ### Creation Process:
-![FHIR Server Deployment - size](/images/fhir-server-create-deployment5-creating.png)
+![FHIR Server Deployment - creating](/images/fhir-server-create-deployment5-creating.png)
 
 Once done the deployment listing will change a little - you'll get a little blue circle in the corner, and a status of "False" (don't worry :wink: this is an OK status in the context of the exercise environment we created for the SMART Day)
 
-![FHIR Server Deployment - size](/images/fhir-server-create-deployment6-done.png)
+We'll come back to our FHIR Server soon, but in the meantime we'll move on to setting up our OAuth server - auth0.
+
+![FHIR Server Deployment - done](/images/fhir-server-create-deployment6-done.png)
 
 
 
 ## Auth0 account:
 SMART On FHIR requires OAUTH2 as a protocol for authorization, for this example we are going to use Auth0 as external Oauth2 server. To use it you should create an account from [here] (https://auth0.com/). Your Auth0 user will be the user to access to the web application.
+
+### User Creation:
+
+Click the Signup and register your email and password:
+
+![OAuth Signup - done](/images/auth0-signup1.png)
+
+![OAuth Signup - email](/images/auth0-signup2-email.png)
+
+![OAuth Signup - password](/images/auth0-signup3-password.png)
+
+When asked you can simply choose you'll use this for Coding, but leave the checkboxes empty:
+
+![OAuth Signup - coding](/images/auth0-signup4-profile-coding.png)
+
+You should see a message that auth0 is setting up your tenant:
+
+![OAuth Signup - tenant](/images/auth0-signup5-settingup-tenant.png)
+
+And eventually you should get a Welcome screen, which you can simply Skip.
+
+![OAuth Signup - welcome](/images/auth0-signup6-welcome-skip.png)
+
+
+
+
 
 With your recently created user you have to login in Auth0 and create a new application:
 ![Application menu](/images/application.png)
