@@ -18,20 +18,20 @@ Angular application to use as a front-end, configured to login using an Auth0 ac
 Before running the container:
 
 ## FHIR Server:
-Quite naturally we need a FHIR Server.
-In this hands-on exercise we'll use the InterSystems Cloud FHIR Server.
-In the SMART Day landing page initial steps you might have already created the server, just in case, make sure you fired off the deployment creation as this will take several minutes.
+Quite naturally we need a FHIR Server.</br>
+In this hands-on exercise we'll use the InterSystems Cloud FHIR Server.</br>
+In the SMART Day landing page initial steps you might have already created the server, just in case, make sure you fired off the deployment creation as this will take several minutes.</br>
 The landing page included basic steps, with screenshots, but just to make sure, here are a some more screenshots in case you need further guidance for these steps:
 
 ### Service Type, Deployment Size and Additional Options:
-You'll only have one Service to "choose" from - the InterSystems FHIR Server
-Also only one Deployment Size (for this exercise) - Extra Small
+You'll only have one Service to "choose" from - the InterSystems FHIR Server</br>
+Also only one Deployment Size (for this exercise) - Extra Small</br>
 Under the Additional Options - Encrypt Database is set, and you do not need to check the Enable SQL Builder option (not covered in this exercise)
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment1-deployment-size.png)
 
 ### Cloud Options:
-Under Cloud Options you can see the Cloud Provider is already AWS, and for the region you can leave the default USE East Ohio (us-east-2).
+Under Cloud Options you can see the Cloud Provider is already AWS, and for the region you can leave the default USE East Ohio (us-east-2).</br>
 (If you want you can browse down the drop-down list and see we also have Israel Tel-Aviv as an optional region)
 
 ![FHIR Server Deployment - cloud provider](/images/fhir-server-create-deployment2-cloud-options.png)
@@ -52,8 +52,8 @@ You will see your deployment in the list of deployments, with a status of CREATI
 ### Creation Process:
 ![FHIR Server Deployment - creating](/images/fhir-server-create-deployment5-creating.png)
 
-Once done the deployment listing will change a little - you'll get a little blue circle in the corner, and a status of "False" (don't worry :wink: this is an OK status in the context of the exercise environment we created for the SMART Day)
-
+Once done the deployment listing will change a little - you'll get a little blue circle in the corner, and a status of "False" (don't worry :wink: this is an OK status in the context of the exercise environment we created for the SMART Day)</br>
+</br>
 We'll come back to our FHIR Server soon, but in the meantime we'll move on to setting up our OAuth server - auth0.
 
 ![FHIR Server Deployment - done](/images/fhir-server-create-deployment6-done.png)
@@ -87,8 +87,8 @@ And eventually you should get a Welcome screen, which you can simply Skip.
 
 ### Creating an Application:
 
-Once you're in the first step we'll want to do is to create an application.
-
+Once you're in the first step we'll want to do is to create an application.</br>
+</br>
 The first screen could should this option - Create Application, or you can choose Applications from the left side menu tree:
 
 ![OAuth Create App - Create Start](/images/auth0-create-app.png)
@@ -143,7 +143,7 @@ Simply press the Create User button:
 
 ![OAuth User - Button](/images/auth0-create-user2-press.png)
 
-Enter in the details for the User - Email address and Password, and press Create.
+Enter in the details for the User - Email address and Password, and press Create.</br>
 Note this can be the same information you used when signing up to auth0, or something else.
 
 ![OAuth User - Details](/images/auth0-create-user3-details.png)
@@ -152,8 +152,8 @@ Then you should see your User's page:
 
 ![OAuth User - Created](/images/auth0-create-user4-created.png)
 
-We'll come back to our User later.
-
+We'll come back to our User later.</br>
+</br>
 For now we need to make sure our Cloud FHIR Server is up and running, to grab some information from there, and do some more setup.
 
 ### Creating an API
@@ -163,8 +163,8 @@ You should see something like this:
 
 ![FHIR Server - OAuth Endpoint](/images/fhir-server-oauth-endpoint.png)
 
-We need the OAuth 2.0 Endpoint to create the auth0 API, so copy the endpoint URL (you can simply click on the copy icon)
-
+We need the OAuth 2.0 Endpoint to create the auth0 API, so copy the endpoint URL (you can simply click on the copy icon)</br>
+</br>
 In your auth0 portal, in the left-side menu tree choose Applications and APIs:
 
 ![auth0 API - Menu](/images/auth0-api1-menu.png)
@@ -182,8 +182,8 @@ Now we have our API:
 ![auth0 API - Created](/images/auth0-api4-created.png)
 
 
-Now we'll want to set the Application Permissions.
-This relates to the SMART Scope discussed.
+Now we'll want to set the Application Permissions.</br>
+This relates to the SMART Scope discussed.</br>
 In our case we'll set it to `user/*.*`, which will allow our app all permissions (read and write etc. to all Resource Types), and press the Add button:
 
 ![auth0 API - Permissions](/images/auth0-api5-permissions.png)
@@ -218,9 +218,9 @@ You'll see our User has now the Permissions:
 ![auth0 User Permissions - api](/images/auth0-user-permissions5-scope.png)
 
 ### FHIR Server OAuth Definitions
-Now we want to return back to our FHIR Server to tie it to the OAuth Server and Application we defined.
-For this we'll need to grab some information from the Application we defined in auth0, specifically the Domain and the Client ID.
-
+Now we want to return back to our FHIR Server to tie it to the OAuth Server and Application we defined.</br>
+For this we'll need to grab some information from the Application we defined in auth0, specifically the Domain and the Client ID.</br>
+</br>
 Go back to our Application details on auth0:
 
 ![FHIR Server OAuth - auth0 app menu](/images/fhir-server-auth1-auth0-app.png)
@@ -233,7 +233,7 @@ Now go back to the InterSystems Cloud Services Portal, and choose from the left-
 
 ![FHIR Server OAuth - fhir menu](/images/fhir-server-auth3-oauthmenu.png)
 
-We will give it a name (auth0), a description (for example auth0 OAuth Server), we will choose a Type (in our case Okta), and set the Issuer Discovery Url - here we'll use the Domain value we took from our auth0 Application.
+We will give it a name (auth0), a description (for example auth0 OAuth Server), we will choose a Type (in our case Okta), and set the Issuer Discovery Url - here we'll use the Domain value we took from our auth0 Application.</br>
 We will add `https://` before it, and a trailing slash at the end `/`. (If we forget the slash we will get an error creating the server), and then press Create:
 
 ![FHIR Server OAuth - fhir oauth server](/images/fhir-server-auth4-oauthserver.png)
@@ -242,8 +242,8 @@ You should see the OAuth Server was added:
 
 ![FHIR Server OAuth - server added](/images/fhir-server-auth5-serveradded.png)
 
-Now we'll go on to define the Application, on the FHIR Server side -
-
+Now we'll go on to define the Application, on the FHIR Server side -</br>
+</br>
 In the same OAuth 2.0 section choose Applications and click Create Application:
 
 ![FHIR Server OAuth - app](/images/fhir-server-auth6-createapp.png)
@@ -262,15 +262,15 @@ Then you should see the application was created:
 
 ### Setting up the app
 
-The last part will be to adapt the application to the various servers and applications we defined.
-
+The last part will be to adapt the application to the various servers and applications we defined.</br>
+</br>
 Download the GitHub repository (either via git clone or by downloading a zip):
 
 ![FHIR Server OAuth - app details](/images/app1-gitclone.png)
 
-We will need to edit 3 files that relate to settings of the services we set-up above.
-You can edit them in VS Code, or any other IDE, or simply in Notepad.
-
+We will need to edit 3 files that relate to settings of the services we set-up above.</br>
+You can edit them in VS Code, or any other IDE, or simply in Notepad.</br>
+</br>
 These files are:
 ```
 smart-ui/src/app/app.module.ts
@@ -289,8 +289,8 @@ you find a section like this:
 
 We need to set values for the `xxxxx` parts.
 
-Use the value of the Domain from the auth0 Application for the Domain part, the value of the Client ID from the auth0 Application, and for the audience the FHIR Server OAuth 2.0 Endpoint (we also have it in the auth0 API audience value).
-
+Use the value of the Domain from the auth0 Application for the Domain part, the value of the Client ID from the auth0 Application, and for the audience the FHIR Server OAuth 2.0 Endpoint (we also have it in the auth0 API audience value).</br>
+</br>
 Per the samples above, this will look something like this:
 
 ![App - module filled](/images/app3-appmodule-filled.png)
@@ -315,9 +315,9 @@ Last we have for `smart-ui/nginx.conf`:
 
 ![App - prox config](/images/app6-nginx.png)
 
-We need to change the FHIR Server references, 3 different places.
-Note two have the full URL with https and the 3rd without, while all 3 don't have the /oauth2 at the end.
-
+We need to change the FHIR Server references, 3 different places.</br>
+Note two have the full URL with https and the 3rd without, while all 3 don't have the /oauth2 at the end.</br>
+</br>
 After your changes it should look something like this:
 
 ![App - prox config](/images/app7-nginx-filled.png)
@@ -326,8 +326,9 @@ Save the file
 
 ### Running the app
 
-Make sure your Docker Desktop is running
-Make sure port 443 is not locally used (perhaps by some other web server running locally)
+Make sure your Docker Desktop is running</br>
+Make sure port 443 is not locally used (perhaps by some other web server running locally)</br>
+</br>
 
 change into the folder where you put the GitHub repo files, the root folder, where you can see a `docker-compose.yml` file.
 
@@ -338,7 +339,7 @@ And run the following command:
 You will see an output of the progress of the process, for example:
 `Building`
 
-Eventually you should see something like this:
+Eventually you should see something like this:</br>
 
 ```
 Running 2/2
@@ -346,7 +347,8 @@ Running 2/2
  ✔ Container smart-ui                  Started  
 ```
 
-This means the app is running, and we can launch it
+This means the app is running, and we can launch it</br>
+</br>
 
 Later when you want to stop the app simply run:
 `docker-compose down`
@@ -360,7 +362,7 @@ First you will get an initial page:
 
 ![App - use - main](/images/app-use1-login.png)
 
-Pressing on Login will take us (redirect) to the auth0 login page.
+Pressing on Login will take us (redirect) to the auth0 login page.</br>
 Here we will login with the Application User we defined in auth0 (note above, this might have been a different User than the Admin User you signed up with for auth0):
 
 ![App - use - user](/images/app-use2-username.png)
@@ -369,8 +371,8 @@ Now auth0 will ask for our approval/consent to share the info required (in this 
 
 ![App - use - consent](/images/app-use3-auth-consent.png)
 
-Once we approve we are in the app and see the start page.
-Note behind the scenes the app got the Token from auth0 and used it to access the FHIR Server issuing a Search request for Patients with the email provided. 
+Once we approve we are in the app and see the start page.</br>
+Note behind the scenes the app got the Token from auth0 and used it to access the FHIR Server issuing a Search request for Patients with the email provided. </br>
 Since this will our first usage, no such Patient was found, so we arrive at the start page.
 
 ![App - use - start](/images/app-use4-start.png)
@@ -379,18 +381,18 @@ Once we press on Start will see a form to enter personal info, enter some inform
 
 ![App - use - personal](/images/app-use5-personal-info.png)
 
-Behind the scenes when we press Save a Create FHIR request is sent to the FHIR server creating a new Patient Resource.
-
+Behind the scenes when we press Save a Create FHIR request is sent to the FHIR server creating a new Patient Resource.</br>
+</br>
 Now we arrive at the main app page, where we can enter various information - heart rate, blood pressure and weight (over time)
 
 ![App - use - main](/images/app-use6-main.png)
 
-Choose one of the options (for example Heart Rate) and you can enter values and Save.
-Each time you save a Create FHIR request is sent to the FHIR Server to create a new Observation Resource.
+Choose one of the options (for example Heart Rate) and you can enter values and Save.</br>
+Each time you save a Create FHIR request is sent to the FHIR Server to create a new Observation Resource.</br>
 As well as a Search request to get all of the related Observation resources, for the relevant Patient, and it displays a graph with the values over time:
 
 ![App - use - main](/images/app-use7-heart.png)
 
 # Credits
-This project is based on the [SMART Workshop](https://github.com/isc-lperezra/workshop-smart) Repo created by our colleague [Luis Angel Perez Ramos](https://github.com/isc-lperezra)
+This project is based on the [SMART Workshop](https://github.com/isc-lperezra/workshop-smart) Repo created by our colleague [Luis Angel Perez Ramos](https://github.com/isc-lperezra).
 Luis's Repo included 3 containers - a local InterSystems IRIS for Health as the FHIR Server, a Web Server, an the SMART UI app. This repo simply left the smart ui part, and changed the connections to go to our Cloud Service (with related Readme updates)
