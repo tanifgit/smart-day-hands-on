@@ -17,27 +17,31 @@ Angular application to use as a front-end, configured to login using an Auth0 ac
 
 Before running the container:
 
-## Auth0 account:
+## FHIR Server:
 Quite naturally we need a FHIR Server.
 In this hands-on exercise we'll use the InterSystems Cloud FHIR Server.
 In the SMART Day landing page initial steps you might have already created the server, just in case, makre sure you fired off the deployment creation as this will take several minutes.
 The landing page included basic steps, with screenshots, but just to make sure, here are a some more screenshots in case you need further guidance for these steps:
 
+### Service Type, Deployment Size and Additional Options:
 You'll only have one Service to "choose" from - the InterSystems FHIR Server
 Also only one Deployment Size (for this exercise) - Extra Small
 Under the Additioanl Options - Encrypt Database is set, and you do not need to check the Enable SQL Builder option (not covered in this exercise)
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment1-deployment-size.png)
 
+### Cloud Options:
 Under Cloud Options you can see the Cloud Provider is already AWS, and for the region you can leave the default USE East Ohio (us-east-2).
 (If you want you can browse down the drop-down list and see we also have Israel Tel-Aviv as an optional region)
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment2-cloud-options.png)
 
-Enter in a name for your deployment (you can leave the defaul, some combination of your user name and date, or set some other meaningful name for you)
+### Deployment Name:
+Enter in a name for your deployment (you can leave the default, some combination of your user name and date, or set some other meaningful name for you)
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment3-deployment-name.png)
 
+### Review:
 Review the various details and press Create
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment4-review.png)
@@ -45,6 +49,7 @@ Review the various details and press Create
 As mentioned this will take several minutes (typicaly could be 15 minutes or even a little more)
 You will see your deployment in the list of deployments, with a status of CREATING
 
+### Creation Process:
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment5-creating.png)
 
 Once done the deployment listing will change a little - you'll get a little blue circle in the corner, and a status of "False" (don't worry :wink: this is an OK status in the context of the exercise environment we created for the SMART Day)
