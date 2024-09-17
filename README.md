@@ -116,15 +116,19 @@ https://localhost
 (note this is https and not http)
 
 We will enter this in the Callback URL:
+
 ![OAuth URLs - Callback](/images/auth0-create-app4-callback-url.png)
 
 In the Allowed Web Origin:
+
 ![OAuth URLs - Allowed Web](/images/auth0-create-app5-allowed-web-origin.png)
 
 And in the Allowed Origin (CORS):
+
 ![OAuth URLs - Allowed CORS](/images/auth0-create-app6-allowed-origin-cors.png)
 
 Finally simply press Save Changes in the right bottom corner:
+
 ![OAuth URLs - Save](/images/auth0-create-app7-save.png)
 
 We'll come back to our application soon, but for now we'll go and create a User for logging into our application
@@ -132,21 +136,130 @@ We'll come back to our application soon, but for now we'll go and create a User 
 ### Application User Creation:
 
 Under User Management choose Users:
+
 ![OAuth User - Menu](/images/auth0-create-user1.png)
 
 Simply press the Create User button:
+
 ![OAuth User - Button](/images/auth0-create-user2-press.png)
 
 Enter in the details for the User - Email address and Password, and press Create.
 Note this can be the same information you used when signing up to auth0, or something else.
+
 ![OAuth User - Details](/images/auth0-create-user3-details.png)
 
 Then you should see your User's page:
+
 ![OAuth User - Created](/images/auth0-create-user4-created.png)
 
 We'll come back to our User later.
 
 For now we need to make sure our Cloud FHIR Server is up and running, to grab some information from there, and do some more setup.
+
+### Creating an API
+
+Go back to the InterSystems Cloud Services Portal, and click on your FHIR Server deployment.
+You should see something like this:
+
+![FHIR Server - OAuth Endpoint](/images/fhir-server-oauth-endpoint.png)
+
+We need the OAuth 2.0 Endpoint to create the auth0 API, so copy the endpoint URL (you can simply click on the copy icon)
+
+In your auth0 portal, in the left-side menu tree choose Applications and APIs:
+
+![auth0 API - Menu](/images/auth0-api1-menu.png)
+
+Here press the Create API button:
+
+![auth0 API - Create](/images/auth0-api2-create.png)
+
+We will give it a name (fhirapi) and the set the Identifier (used as the `audience` parameter for the OAuth request) as the FHIR Server OAuth 2.0 Endpoint we previously copied, and press Create. This will look something like this:
+
+![auth0 API - Name](/images/auth0-api3-name-iden.png)
+
+Now we have our API:
+
+![auth0 API - Created](/images/auth0-api4-created.png)
+
+
+Now we'll want to set the Application Permissions.
+This relates to the SMART Scope discussed.
+In our case we'll set it to `user/*.*`, which will allow our app all premissions (read and write etc. to all Resource Types), and press the Add button:
+
+![auth0 API - Permissions](/images/auth0-api5-permissions.png)
+
+You will see your scope was added to the Permissions list:
+
+![auth0 API - Permissions](/images/auth0-api6-permissions-list.png)
+
+### User Permissions:
+Now we'll go back to our Application User and grant this User permissions per the API Permissions we just defined:
+
+![auth0 User Permissions - Menu](/images/auth0-user-permissions1-menu.png)
+
+Choose the User you defined and click on the Permissions tab:
+
+![auth0 User Permissions - permissions](/images/auth0-user-permissions2-per.png)
+
+Click on the Assin Permissions button:
+
+![auth0 User Permissions - Assign](/images/auth0-user-permissions3-assign.png)
+
+Choose the API we defined:
+
+![auth0 User Permissions - api](/images/auth0-user-permissions4-api.png)
+
+Check the Permissions (Scope) checkbox we defined, and press Add Permissions:
+
+![auth0 User Permissions - api](/images/auth0-user-permissions5-scope.png)
+
+You'll see our User has now the Permissions:
+
+![auth0 User Permissions - api](/images/auth0-user-permissions5-scope.png)
+
+### FHIR Server OAuth Definitions
+Now we want to return back to our FHIR Server to tie it to the OAuth Server and Application we defined.
+For this we'll need to grab some information from the Application we defined in auth0, specifically the Domain and the Client ID.
+
+Go back to our Application details on auth0:
+
+![FHIR Server OAuth - auth0 app menu](/images/fhir-server-auth1-auth0-app.png)
+
+Click on the Application we defined (fhirapp) and copy aside the Domain and Client ID values:
+
+![FHIR Server OAuth - auth0 app details](/images/fhir-server-auth2-auth0-app-details.png)
+
+Now go back to the InterSystems Cloud Services Portal, and choose from the left-side menu OAuth 2.0 and click on the CREATE AUTHENTICATION SERVER button:
+
+![FHIR Server OAuth - fhir menu](/images/fhir-server-auth3-oauthmenu.png)
+
+We will give it a name (auth0), a description (for example auth0 OAuth Server), we will choose a Type (in our case Okta), and set the Issuer Discovery Url - here we'll use the Domain value we took from our auth0 Application.
+We will add `https://` before it, and a trailing slash at the end `/`. (If we forget the slash we will get an error creating the server), and then press Create:
+
+![FHIR Server OAuth - fhir oauth server](/images/fhir-server-auth4-oauthserver.png)
+
+You should see the OAuth Server was added:
+
+![FHIR Server OAuth - server added](/images/fhir-server-auth5-serveradded.png)
+
+Now we'll go on to define the Application, on the FHIR Server side -
+
+In the same OAuth 2.0 section choose Applications and click Create Application:
+
+![FHIR Server OAuth - app](/images/fhir-server-auth6-createapp.png)
+
+We'll choose the Auth Server we defined (auth0), provide it a name (fhirapp), choose the Authentication Flow (Single Page Application or Native), leave the Grant Type as the default, and set the Client ID to the value we copied from the auth0 Application we defined, then press CREATE.
+
+It should look something like this:
+
+![FHIR Server OAuth - app details](/images/fhir-server-auth7-createapp-details.png)
+
+Then you should see the application was created:
+
+![FHIR Server OAuth - app details](/images/fhir-server-auth8-createapp-created.png)
+
+
+
 
 
 With your recently created user you have to login in Auth0 and create a new application:
