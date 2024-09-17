@@ -63,7 +63,7 @@ We'll come back to our FHIR Server soon, but in the meantime we'll move on to se
 ## Auth0 account:
 SMART On FHIR requires OAUTH2 as a protocol for authorization, for this example we are going to use Auth0 as external Oauth2 server. To use it you should create an account from [here] (https://auth0.com/). Your Auth0 user will be the user to access to the web application.
 
-### User Creation:
+### Signing Up:
 
 Click the Signup and register your email and password:
 
@@ -85,8 +85,68 @@ And eventually you should get a Welcome screen, which you can simply Skip.
 
 ![OAuth Signup - welcome](/images/auth0-signup6-welcome-skip.png)
 
+### Creating an Application:
 
+Once you're in the first step we'll want to do is to create an application.
 
+The first screen could should this option - Create Application, or you can choose Applications from the left side menu tree:
+
+![OAuth Create App - Create Start](/images/auth0-create-app.png)
+
+![OAuth Create App - Create Menu](/images/auth0-create-app0.png)
+
+Via either way we will arrive at the Application Creation page, we will give it a name (fhirapp) and a Type - Single Page Web Application (or SPA), and simply press Create:
+
+![OAuth Create App - Name and Type](/images/auth0-create-app1-name-spa.png)
+
+You should see now your application page:
+
+![OAuth Create App - Created](/images/auth0-create-app2-created.png)
+
+### Application URLs:
+
+We will now want to setup some relevant URLs in our application settings:
+
+![OAuth URLs - Settings](/images/auth0-create-app3-settings.png)
+
+The URL we will enter in several places is:
+```
+https://localhost
+```
+(note this is https and not http)
+
+We will enter this in the Callback URL:
+![OAuth URLs - Callback](/images/auth0-create-app4-callback-url.png)
+
+In the Allowed Web Origin:
+![OAuth URLs - Allowed Web](/images/auth0-create-app5-allowed-web-origin.png)
+
+And in the Allowed Origin (CORS):
+![OAuth URLs - Allowed CORS](/images/auth0-create-app6-allowed-origin-cors.png)
+
+Finally simply press Save Changes in the right bottom corner:
+![OAuth URLs - Save](/images/auth0-create-app7-save.png)
+
+We'll come back to our application soon, but for now we'll go and create a User for logging into our application
+
+### Application User Creation:
+
+Under User Management choose Users:
+![OAuth User - Menu](/images/auth0-create-user1.png)
+
+Simply press the Create User button:
+![OAuth User - Button](/images/auth0-create-user2-press.png)
+
+Enter in the details for the User - Email address and Password, and press Create.
+Note this can be the same information you used when signing up to auth0, or something else.
+![OAuth User - Details](/images/auth0-create-user3-details.png)
+
+Then you should see your User's page:
+![OAuth User - Created](/images/auth0-create-user4-created.png)
+
+We'll come back to our User later.
+
+For now we need to make sure our Cloud FHIR Server is up and running, to grab some information from there, and do some more setup.
 
 
 With your recently created user you have to login in Auth0 and create a new application:
