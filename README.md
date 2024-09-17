@@ -1,4 +1,4 @@
-# SMART Day - SMART on FHIR HAnds-on Exercise
+# SMART Day - SMART on FHIR Hands-on Exercise
 This project is an example of configuration and use of InterSystems FHIR Server and capabilities to build a SMART on FHIR application.
 
 The project is made out of three parts - 
@@ -20,13 +20,13 @@ Before running the container:
 ## FHIR Server:
 Quite naturally we need a FHIR Server.
 In this hands-on exercise we'll use the InterSystems Cloud FHIR Server.
-In the SMART Day landing page initial steps you might have already created the server, just in case, makre sure you fired off the deployment creation as this will take several minutes.
+In the SMART Day landing page initial steps you might have already created the server, just in case, make sure you fired off the deployment creation as this will take several minutes.
 The landing page included basic steps, with screenshots, but just to make sure, here are a some more screenshots in case you need further guidance for these steps:
 
 ### Service Type, Deployment Size and Additional Options:
 You'll only have one Service to "choose" from - the InterSystems FHIR Server
 Also only one Deployment Size (for this exercise) - Extra Small
-Under the Additioanl Options - Encrypt Database is set, and you do not need to check the Enable SQL Builder option (not covered in this exercise)
+Under the Additional Options - Encrypt Database is set, and you do not need to check the Enable SQL Builder option (not covered in this exercise)
 
 ![FHIR Server Deployment - size](/images/fhir-server-create-deployment1-deployment-size.png)
 
@@ -46,7 +46,7 @@ Review the various details and press Create
 
 ![FHIR Server Deployment - review](/images/fhir-server-create-deployment4-review.png)
 
-As mentioned this will take several minutes (typicaly could be 15 minutes or even a little more)
+As mentioned this will take several minutes (typically could be 15 minutes or even a little more)
 You will see your deployment in the list of deployments, with a status of CREATING
 
 ### Creation Process:
@@ -184,7 +184,7 @@ Now we have our API:
 
 Now we'll want to set the Application Permissions.
 This relates to the SMART Scope discussed.
-In our case we'll set it to `user/*.*`, which will allow our app all premissions (read and write etc. to all Resource Types), and press the Add button:
+In our case we'll set it to `user/*.*`, which will allow our app all permissions (read and write etc. to all Resource Types), and press the Add button:
 
 ![auth0 API - Permissions](/images/auth0-api5-permissions.png)
 
@@ -318,7 +318,7 @@ Last we have for `smart-ui/nginx.conf`:
 We need to change the FHIR Server references, 3 different places.
 Note two have the full URL with https and the 3rd without, while all 3 don't have the /oauth2 at the end.
 
-After your changes it should look soemthing like this:
+After your changes it should look something like this:
 
 ![App - prox config](/images/app7-nginx-filled.png)
 
@@ -381,7 +381,7 @@ Once we press on Start will see a form to enter personal info, enter some inform
 
 Behind the scenes when we press Save a Create FHIR request is sent to the FHIR server creating a new Patient Resource.
 
-Now we arrive at the main app page, where we can enter various information - heart rate, blood pressue and weight (over time)
+Now we arrive at the main app page, where we can enter various information - heart rate, blood pressure and weight (over time)
 
 ![App - use - main](/images/app-use6-main.png)
 
