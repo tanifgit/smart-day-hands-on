@@ -61,7 +61,7 @@ We'll come back to our FHIR Server soon, but in the meantime we'll move on to se
 
 
 ## OAuth Server (auth0)
-SMART On FHIR requires OAUTH2 as a protocol for authorization, for this example we are going to use Auth0 as external Oauth2 server. To use it you should create an account from [here] (https://auth0.com/). Your Auth0 user will be the user to access to the web application.
+SMART On FHIR requires OAuth 2.0 as a protocol for authorization, for this example we are going to use auth0 as external Oauth2 server. To use it you should create an account from [here](https://auth0.com/). Your Auth0 user will be the user to access to the web application.
 
 ### Signing Up:
 
@@ -281,6 +281,7 @@ smart-ui/nginx.conf
 1. app module
 
 For `smart-ui/src/app/app.module.ts`:
+</br>
 ![App - module-path](/images/app1_1-appmodule-path.png)
 
 you find a section like this:
