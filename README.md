@@ -348,6 +348,9 @@ Running 2/2
 
 This means the app is running, and we can launch it
 
+Later when you want to stop the app simply run:
+`docker-compose down`
+
 ### Using the app
 
 Open a browser and browse to:
