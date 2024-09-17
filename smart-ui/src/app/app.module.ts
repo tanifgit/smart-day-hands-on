@@ -35,11 +35,11 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
   imports: [
     BrowserModule,
     AuthModule.forRoot({
-      domain: 'dev-byuucbffk4ihi7qx.us.auth0.com',
-      clientId: '5XAvw6rMHcKEwgf91hipiqwXKHfO7KUw',
+      domain: 'dev-xxxxxxxxxx.us.auth0.com',
+      clientId: 'xxxxxxxxxx',
       authorizationParams: {
         redirect_uri: 'https://localhost',
-        audience: 'https://fhirauth.sazpopk2wzfr.workload-prod-fhiraas.isccloud.io/oauth2',
+        audience: 'https://fhirauth.xxxxxxxxxx.workload-prod-fhiraas.isccloud.io/oauth2',
         scope: 'openid profile email user/*.*',
       },
       httpInterceptor: {

@@ -1,6 +1,6 @@
 {
    "/oauth2/*": {
-      "target": "https://fhirauth.sazpopk2wzfr.workload-prod-fhiraas.isccloud.io/oauth2",
+      "target": "https://fhirauth.xxxxxxxxxx.workload-prod-fhiraas.isccloud.io/oauth2",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
