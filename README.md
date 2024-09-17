@@ -1,4 +1,4 @@
-# SMART On FHIR Workshop
+# SMART Day - SMART on FHIR HAnds-on Exercise
 This project is an example of configuration and use of InterSystems FHIR Server and capabilities to build a SMART on FHIR application.
 
 The project is made out of three parts - 
@@ -60,7 +60,7 @@ We'll come back to our FHIR Server soon, but in the meantime we'll move on to se
 
 
 
-## Auth0 account:
+## OAuth Server (auth0)
 SMART On FHIR requires OAUTH2 as a protocol for authorization, for this example we are going to use Auth0 as external Oauth2 server. To use it you should create an account from [here] (https://auth0.com/). Your Auth0 user will be the user to access to the web application.
 
 ### Signing Up:
@@ -258,61 +258,136 @@ Then you should see the application was created:
 
 ![FHIR Server OAuth - app details](/images/fhir-server-auth8-createapp-created.png)
 
+## The (Angular) Application
 
+### Setting up the app
 
+The last part will be to adapt the application to the various servers and applications we defined.
 
+Download the GitHub repository (either via git clone or by downloading a zip):
 
-With your recently created user you have to login in Auth0 and create a new application:
-![Application menu](/images/application.png)
+![FHIR Server OAuth - app details](/images/app1-gitclone.png)
 
-Don't forget the Domain value because you are going to use it in the following steps.
+We will need to edit 3 files that relate to settings of the services we set-up above.
+You can edit them in VS Code, or any other IDE, or simply in Notepad.
 
-A new window will be opened, you have to select **Single Page Web Applications** and define the name of your application (feel free).
-![Single Page Web Application](/images/new_application.png)
-
-After that, a new screen with the details of the configuration will be opened fulfill the following fields: 
-* Allowed Callback URLs: **https://localhost**
-* Allowed Logout URLs: **https://localhost**
-* Allowed Web Origins: **https://localhost**
-* Allow Cross-Origin Authentication: Checked
-* Allowed Origins (CORS): **https://localhost**
-![Application configuration](/images/creating_application.png)
-
-Once the application has been created you have to create a new API to protect and identify our connection with InterSystems IRIS FHIR Repository. Clicking on APIs option in the left menu will open a screen like this:
-![API configuration](/images/new_api.png)
-
-The URL field will be used to identify the "audience" or resource server that the client will access, you can use this one:
+These files are:
 ```
-https://localhost/smart/fhir/r5
-```
-Once you have created the API you need to define the Permissions that will be assigned to the authorized user, in our case we are going to allow the user to read and modify all the resources in the FHIR repository defining the FHIR Scope:
-```
-user/*.*
-```
-![API permission](/images/api_permission.png)
-
-Now Auth0 is ready to work as authentication and authorization server!
-
-## Angular Application configuration
-
-With our Auth0 account configure we have to update the Angular application to work with it. From Visual Studio Code open the file **smart-ui/src/app.module.ts** and replace **YOUR_DOMAIN** and **YOUR_CLIENT_ID** with the values that you got when you created the application on Auth0.
-![Angular configuration](/images/angular_configuration.png)
-
-Now you are ready to deploy the containers!
-
-## Running Docker Containers:
-
-Open a terminal in Visual Studio and just write:
-```
-docker-compose up -d
+smart-ui/src/app/app.module.ts
+smart-ui/proxy.config.json
+smart-ui/nginx.conf
 ```
 
-You will see 1 container running on your Docker.
-![Docker Desktop](/images/docker_running.png)
+1. app module
 
-# Opening Angular application.
+For `smart-ui/src/app/app.module.ts`:
+![App - module-path](/images/app1_1-appmodule-path.png)
 
-This project is configured to deploy an Angular application in the following address: [URL](https://localhost). This application has been created with Angular Material to simulate an application for smartphones, if you are using Google Chrome or Firefox you can change the visualization pressing **CTRL + SHIFT + M**
-![Login screen](/images/login_smart.png)
+you find a section like this:
 
-Click on login and introduce the user from your Auth0 account. Auth0 will request permission to access to your Auth0 account, grant it.
+![App - module](/images/app2-appmodule.png)
+
+We need to set values for the `xxxxx` parts.
+
+Use the value of the Domain from the auth0 Application for the Domain part, the value of the Client ID from the auth0 Application, and for the audience the FHIR Server OAuth 2.0 Endpoint (we also have it in the auth0 API audience value).
+
+Per the samples above, this will look something like this:
+
+![App - module filled](/images/app3-appmodule-filled.png)
+
+Save the file
+
+2. proxy config
+
+For `smart-ui/proxy.config.json`:
+
+You'll see:
+![App - prox config](/images/app4-proxyconfig.png)
+
+Again change the URL to the FHIR Server's OAuth 2.0 Endpoint, something like this:
+![App - prox config filled](/images/app5-proxyconfig-filled.png)
+
+Save the file
+
+3. nginx conf
+
+Last we have for `smart-ui/nginx.conf`:
+
+![App - prox config](/images/app6-nginx.png)
+
+We need to change the FHIR Server references, 3 different places.
+Note two have the full URL with https and the 3rd without, while all 3 don't have the /oauth2 at the end.
+
+After your changes it should look soemthing like this:
+
+![App - prox config](/images/app7-nginx-filled.png)
+
+Save the file
+
+### Running the app
+
+Make sure your Docker Desktop is running
+Make sure port 443 is not locally used (perhaps by some other web server running locally)
+
+change into the folder where you put the GitHub repo files, the root folder, where you can see a `docker-compose.yml` file.
+
+And run the following command:
+
+`docker-compose up -d --build`
+
+You will see an output of the progress of the process, for example:
+`Building`
+
+Eventually you should see something like this:
+
+```
+Running 2/2
+ ✔ Network smart-day-hands-on_default Created                                                                                          0.1s 
+ ✔ Container smart-ui                  Started  
+```
+
+This means the app is running, and we can launch it
+
+### Using the app
+
+Open a browser and browse to:
+[https://localhost](https://localhost)
+
+First you will get an initial page:
+
+![App - use - main](/images/app-use1-login.png)
+
+Pressing on Login will take us (redirect) to the auth0 login page.
+Here we will login with the Application User we defined in auth0 (note above, this might have been a different User than the Admin User you signed up with for auth0):
+
+![App - use - user](/images/app-use2-username.png)
+
+Now auth0 will ask for our approval/consent to share the info required (in this case for example the email address and of course the FHIR Resources on the FHIR server, per the Scope defined - user/*.*)
+
+![App - use - consent](/images/app-use3-auth-consent.png)
+
+Once we approve we are in the app and see the start page.
+Note behind the scenes the app got the Token from auth0 and used it to access the FHIR Server issuing a Search request for Patients with the email provided. 
+Since this will our first usage, no such Patient was found, so we arrive at the start page.
+
+![App - use - start](/images/app-use4-start.png)
+
+Once we press on Start will see a form to enter personal info, enter some information:
+
+![App - use - personal](/images/app-use5-personal-info.png)
+
+Behind the scenes when we press Save a Create FHIR request is sent to the FHIR server creating a new Patient Resource.
+
+Now we arrive at the main app page, where we can enter various information - heart rate, blood pressue and weight (over time)
+
+![App - use - main](/images/app-use6-main.png)
+
+Choose one of the options (for example Heart Rate) and you can enter values and Save.
+Each time you save a Create FHIR request is sent to the FHIR Server to create a new Observation Resource.
+As well as a Search request to get all of the related Observation resources, for the relevant Patient, and it displays a graph with the values over time:
+
+![App - use - main](/images/app-use7-heart.png)
+
+# Credits
+This project is based on the [SMART Workshop](https://github.com/isc-lperezra/workshop-smart) Repo created by our colleague [Luis Angel Perez Ramos](https://github.com/isc-lperezra)
+Luis's Repo included 3 containers - a local InterSystems IRIS for Health as the FHIR Server, a Web Server, an the SMART UI app. This repo simply left the smart ui part, and changed the connections to go to our Cloud Service (with related Readme updates)

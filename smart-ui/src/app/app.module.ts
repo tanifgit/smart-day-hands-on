@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,11 +35,11 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
   imports: [
     BrowserModule,
     AuthModule.forRoot({
-      domain: 'dev-vyxw1dvew866g0pr.us.auth0.com',
-      clientId: '2MM7VzKCY8gUlY7r1qn6XGEHxhsZGK19',
+      domain: 'dev-byuucbffk4ihi7qx.us.auth0.com',
+      clientId: '5XAvw6rMHcKEwgf91hipiqwXKHfO7KUw',
       authorizationParams: {
         redirect_uri: 'https://localhost',
-        audience: 'https://fhirauth.hkng16n4t0pp.workload-prod-fhiraas.isccloud.io/oauth2',
+        audience: 'https://fhirauth.sazpopk2wzfr.workload-prod-fhiraas.isccloud.io/oauth2',
         scope: 'openid profile email user/*.*',
       },
       httpInterceptor: {
